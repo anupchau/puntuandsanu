@@ -207,15 +207,14 @@
     <script>
       const video = document.getElementById("loveVideo");
 
-      video.addEventListener("click", function (e) {
-        e.preventDefault();
+video.addEventListener("click", function (e) {
+  if (video.paused) {
+    video.play();
+  } else {
+    video.pause();
+  }
+});
 
-        if (video.paused) {
-          video.play();
-        } else {
-          video.pause();
-        }
-      });
 
       let index = 0;
 
