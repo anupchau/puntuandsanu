@@ -206,6 +206,70 @@
         >
           ❤️ Tap to Play ❤️
         </div>
+
+        <!-- Forward and Back buttons -->
+        <div
+          style="
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+            box-sizing: border-box;
+          "
+        >
+          <button
+            id="backBtn"
+            style="
+              background: rgba(255, 255, 255, 0.8);
+              border: none;
+              padding: 8px 12px;
+              border-radius: 50%;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <!-- Left Arrow SVG -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="#ff2b6b"
+              viewBox="0 0 24 24"
+            >
+              <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+            </svg>
+          </button>
+
+          <button
+            id="forwardBtn"
+            style="
+              background: rgba(255, 255, 255, 0.8);
+              border: none;
+              padding: 8px 12px;
+              border-radius: 50%;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <!-- Right Arrow SVG -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="#ff2b6b"
+              viewBox="0 0 24 24"
+            >
+              <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" />
+            </svg>
+          </button>
+        </div>
       </div>
 
       <div class="message">
@@ -241,21 +305,35 @@
     <script>
       const video = document.getElementById("loveVideo");
       const overlay = document.getElementById("playOverlay");
+      const backBtn = document.getElementById("backBtn");
+      const forwardBtn = document.getElementById("forwardBtn");
 
-      // click on overlay to play video with sound
+      // Play video with sound when overlay clicked
       overlay.addEventListener("click", function () {
-        video.muted = false; // unmute
+        video.muted = false;
         video.play().catch((err) => console.log("Video play failed:", err));
-        overlay.style.display = "none"; // hide overlay
+        overlay.style.display = "none";
       });
 
-      // toggle play/pause on video click
+      // Toggle play/pause on video click
       video.addEventListener("click", function () {
         if (video.paused) {
           video.play().catch((err) => console.log("Video play failed:", err));
         } else {
           video.pause();
         }
+      });
+
+      // Skip backward 5 seconds
+      backBtn.addEventListener("click", function (e) {
+        e.stopPropagation(); // prevent toggling play
+        video.currentTime = Math.max(video.currentTime - 5, 0);
+      });
+
+      // Skip forward 5 seconds
+      forwardBtn.addEventListener("click", function (e) {
+        e.stopPropagation(); // prevent toggling play
+        video.currentTime = Math.min(video.currentTime + 5, video.duration);
       });
 
       // ensure video loads properly
