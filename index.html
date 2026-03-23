@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>For My Love ❤️</title>
+
+    <style>
+      .love-title {
+        font-size: 40px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+
+        background: linear-gradient(
+          45deg,
+          #ff004c,
+          #ff6ec7,
+          #ff9a9e,
+          #ffdde1,
+          #ff3d7f
+        );
+
+        background-size: 300%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+
+        animation:
+          gradientMove 6s ease infinite,
+          heartbeat 1.5s infinite;
+
+        text-shadow:
+          0 0 10px rgba(255, 0, 100, 0.6),
+          0 0 20px rgba(255, 0, 150, 0.5),
+          0 0 40px rgba(255, 0, 200, 0.4);
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(45deg, #ff4e8a, #ff8ac5);
+        margin: 0;
+        text-align: center;
+        color: #444;
+      }
+
+      .container {
+        max-width: 420px;
+        margin: auto;
+        background: white;
+        border-radius: 15px;
+        padding: 20px;
+        margin-top: 30px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        color: #ff2b6b;
+      }
+
+      .slider {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .slide {
+        display: none;
+      }
+
+      .slide img {
+        width: 100%;
+        border-radius: 10px;
+      }
+
+      .active {
+        display: block;
+      }
+
+      video {
+        width: 100%;
+        border-radius: 10px;
+        margin-top: 10px;
+      }
+
+      .message {
+        margin-top: 20px;
+        font-size: 15px;
+        line-height: 1.6;
+      }
+
+      .footer {
+        background: #ffd9e7;
+        padding: 15px;
+        margin-top: 20px;
+        border-radius: 10px;
+        font-weight: bold;
+      }
+
+      .heart {
+        position: fixed;
+        top: -10px;
+        left: 0;
+        font-size: 20px;
+        color: red;
+        pointer-events: none;
+        animation: fall linear forwards;
+      }
+
+      @keyframes fall {
+        0% {
+          transform: translateY(-10vh);
+          opacity: 1;
+        }
+
+        100% {
+          transform: translateY(110vh);
+          opacity: 0;
+        }
+      }
+      @keyframes gradientMove {
+        0% {
+          background-position: 0%;
+        }
+        50% {
+          background-position: 100%;
+        }
+        100% {
+          background-position: 0%;
+        }
+      }
+
+      @keyframes heartbeat {
+        0% {
+          transform: scale(1);
+        }
+        25% {
+          transform: scale(1.1);
+        }
+        40% {
+          transform: scale(1);
+        }
+        60% {
+          transform: scale(1.12);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1 class="love-title">Happy Anniversary My Love ❤️</h1>
+
+      <div class="slider">
+        <div class="slide active">
+          <img src="IMG_9569.JPG.jpeg" />
+        </div>
+      </div>
+
+      <video id="loveVideo" width="100%">
+        <source src="IMG_9554.mp4" type="video/mp4" />
+      </video>
+
+      <div class="message">
+        <p>
+          It’s been two years of loving you , and I’m so grateful to have you in
+          my life. You make me so, so happy.
+        </p>
+
+        <p>
+          But now you’re going back and I’m not ready for it. Still, I remind
+          myself you come every year just to see me, and those moments we spend
+          together mean everything to me.
+        </p>
+
+        <p>
+          I love holding you, being close to you, hearing your laugh, your
+          nonstop yap, every little thing about you.
+        </p>
+
+        <p>
+          I’m going to miss your hugs, your cuddles, your presence… I’m going to
+          miss you. Please come home soon.
+        </p>
+
+        <p>I’ll miss you more than words I can explain.</p>
+
+        <p>Happy anniversary, my love.</p>
+
+        <p>I love you so much Puntu ❤️</p>
+      </div>
+    </div>
+
+    <script>
+      const video = document.getElementById("loveVideo");
+
+      video.addEventListener("click", function () {
+        if (video.paused) {
+          video.play();
+        } else {
+          video.pause();
+        }
+      });
+
+      let index = 0;
+
+      function showSlide() {
+        slides.forEach((s) => s.classList.remove("active"));
+        slides[index].classList.add("active");
+        index++;
+        if (index >= slides.length) {
+          index = 0;
+        }
+      }
+
+      setInterval(showSlide, 3000);
+
+      // falling hearts
+
+      function createHeart() {
+        let heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = Math.random() * 25 + 15 + "px";
+        heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 6000);
+      }
+
+      setInterval(createHeart, 300);
+    </script>
+  </body>
+</html>
